@@ -1,0 +1,8 @@
+scipy>=1.2.1
+numpy>=1.16.3
+scikit-learn>=0.21.0
+tqdm>=4.31.1
+biopython>=1.73
+pandas>=0.25.3
+joblib>=0.14
+justblast>=2019.0.7
