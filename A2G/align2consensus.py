@@ -19,6 +19,7 @@ E-mail: jshleap@gmail.com
 """
 import argparse
 import os
+import tempfile
 from subprocess import run, PIPE, CalledProcessError
 from typing import List
 
@@ -33,15 +34,18 @@ from justblast.utils import FastX
 # TODO: add checkpoints within the alignment
 
 
-def execute(args: List[str], inpt: str):
-    st = run(args, input=inpt.encode('utf-8'), env=os.environ, stdout=PIPE,
+def execute(args: List[str], inpt: Optional[str]):
+    if inpt is not None:
+        inpt = inpt.encode('utf-8')
+    st = run(args, input=inpt, env=os.environ, stdout=PIPE,
              stderr=PIPE)
     try:
         st.check_returncode()
     except CalledProcessError:
-        for x in inpt.split('\n'):
-            if '>' in x:
-                print(x)
+        if inpt is not None:
+            for x in inpt.split(b'\n'):
+                if b'>' in x:
+                    print(x)
         raise Exception(st.stderr.decode('utf-8'), st.stdout.decode('utf-8'))
     return st
 
@@ -55,16 +59,38 @@ class Align(object):
     current = None
 
     def __init__(self, gene_consensus: str, amplicon_consensus: str,
-                 query: str, no_write: bool = False, cpus: int = -1):
+                 query: str, no_write: bool = False, outliers: bool = True,
+                 cpus: int = -1):
+        self.entropy = outliers
         self.out_prefix = query[: query.rfind('.')]
         self.no_write = no_write
         self.cpus = cpus
         self.gene_consensus = gene_consensus
         self.amplicon_consensus = amplicon_consensus
+        self.reference = (gene_consensus, amplicon_consensus)
         self.query = query
         self.clf = IsolationForest(behaviour="new", max_samples='auto',
-                                   random_state=12345,  contamination='auto',
+                                   random_state=12345, contamination='auto',
                                    n_jobs=cpus)
+
+    @property
+    def reference(self):
+        return self.__reference
+
+    @reference.setter
+    def reference(self, sequences: Tuple[str, str]):
+        gene_consensus, amplicon_consensus = sequences
+        # executable = os.path.abspath(os.path.join(os.path.dirname(__file__),
+        #                                           os.pardir, 'bin', 'mafft'))
+        executable= 'mafft'
+        mafft = [executable, '--auto', '-']
+        with open(gene_consensus) as gc, open(amplicon_consensus) as ac:
+            refs = gc.read() + ac.read()
+        st = execute(mafft, refs)
+        alignment = st.stdout.decode('utf-8')
+        self.__reference = '%s_reference.aln' % self.out_prefix
+        with open(self.__reference, 'w') as r:
+            r.write(alignment)
 
     @property
     def query(self):
@@ -72,35 +98,38 @@ class Align(object):
 
     @query.setter
     def query(self, query: str):
-        self.__query = FastX(query, cpus=self.cpus)  # ,unique=True)
+        self.__query = FastX(query, cpus=self.cpus, unique=True)
 
     @staticmethod
-    def triwise(gene_consensus: str, amplicon_consensus: str, query: str,
-                entropy: bool = True, long: bool = False):
-        executable = os.path.abspath(os.path.join(os.path.dirname(__file__),
-                                                  os.pardir, 'bin', 'mafft'))
-        mafft = [executable, '--add', '-']
-        # TODO: Implement plugins
-        with open(amplicon_consensus) as ac, open(gene_consensus) as gec:
-            fasta = '%s%s%s' % (ac.read(), gec.read(), query)
-        if len(query) > 10000 and not long:
+    def triwise(reference: str, query: str, entropy: bool = True,
+                long: bool = False):
+        executable = 'mafft' #os.path.abspath(os.path.join(os.path.dirname(__file__),
+                      #                            os.pardir, 'bin', 'mafft'))
+        if len(query) > 50000 and not long:
             # Very long sequences might kill the process
             return None, None, query
-        st = execute(mafft, fasta)
-        alignment = st.stdout.decode('utf-8')
-        with open('current.aln', 'w') as a:
-            a.write(alignment)
-        aln = Alignment(alignment, outliers_detection=entropy, cpus=1)
-        q = aln.seq.iloc[2]
-        # ungap = aln.seq.iloc[[1,2]].apply(lambda x: (x != '-').all(), axis=0)
-        ungap = aln.seq.iloc[[0,1]].apply(lambda x: (x != '-').all(), axis=0)
-        # idx = q.where(aln.seq.iloc[2] != '-').dropna().index.values
-        aln.subset_idx = (None, ungap)
-        aln.entropy = True
-        median_entropy = aln.entropy.median()
-        aln.subset_idx = ([q.name], None)
-        fasta = str(aln)
-        # intermediate_checkpoint(fasta, median_entropy, longs)
+
+        with tempfile.NamedTemporaryFile(dir=os.getcwd()) as temp:
+            temp.write(query.encode('utf-8'))
+            temp.seek(0)
+            mafft = [executable, '--thread', '1', '--keeplength', '--add',
+                     temp.name, reference]
+            # TODO: Implement plugins
+            st = execute(mafft, None)
+            alignment = st.stdout.decode('utf-8')
+            with open('current.aln', 'w') as a:
+                a.write(alignment)
+            aln = Alignment(alignment, outliers_detection=False, cpus=1)
+            q = aln.seq.iloc[2]
+            ungap = aln.seq.iloc[[0,1]].apply(lambda x: (x != '-').all(),
+                                              axis=0)
+            aln.subset_idx = (None, ungap)
+            if entropy:
+                aln.entropy = True
+                median_entropy = aln.entropy.median()
+                aln.subset_idx = ([q.name], None)
+            fasta = str(aln)
+            # intermediate_checkpoint(fasta, median_entropy, longs)
         return fasta, median_entropy, None
 
     def run(self):
@@ -110,11 +139,10 @@ class Align(object):
                 results = dill.load(d)
         else:
             results = Parallel(n_jobs=self.cpus)(
-                delayed(self.triwise)(self.gene_consensus,
-                                      self.amplicon_consensus, sequence,
-                                      entropy=True) for sequence in
-                tqdm(self.query.yield_seq(), desc='Aligning',
-                     total=len(self.query)))
+                delayed(self.triwise)(self.reference, sequence,
+                                      entropy=self.entropy ) for sequence
+                in tqdm(self.query.yield_seq(), desc='Aligning',
+                        total=len(self.query)))
             with open(dill_name, 'wb') as d:
                 dill.dump(results, d)
         fasta, shannon, longs = zip(*results)
@@ -127,11 +155,9 @@ class Align(object):
                 with open(long_dill, 'rb') as d:
                     lon = dill.load(d)
             else:
-                lon = [
-                    self.triwise(self.gene_consensus, self.amplicon_consensus,
-                                 long, entropy=True, long=True) for long in
-                    tqdm(longs, desc='Aligning long sequences',
-                         total=len(longs))]
+                lon = [self.triwise(self.reference, long, long=True) for long
+                       in tqdm(longs, desc='Aligning long sequences',
+                               total=len(longs))]
                 with open(long_dill, 'wb') as d:
                     dill.dump(lon, d)
             fa, sh, _ = zip(*lon)
@@ -143,13 +169,22 @@ class Align(object):
         outl = self.clf.fit_predict(shannon)
         l = "Outliers removed in %s_aligned.withoutoutliers:" % self.out_prefix
         print(l, sum(outl < 0))
+        subset = [x for i, x in enumerate(fasta) if outl[i] != -1]
         if self.no_write:
-            return list(zip(fasta, shannon)), outl
-
+            return fasta, subset
         with open('%s_aligned.fasta' % self.out_prefix, 'w') as o, open(
                 '%s_aligned.withoutliers' % self.out_prefix, 'w') as w:
             o.write('\n'.join(fasta))
-            w.write('\n'.join(x for i, x in enumerate(fasta) if outl[i] != -1))
+            w.write('\n'.join(subset))
+
+
+def main(global_consensus: str, local_consensus: str, fasta: str,
+         no_write: bool = False, cpus: int = -1):
+    aln = Align(global_consensus, local_consensus, fasta, no_write=no_write,
+                cpus=cpus)
+    out = aln.run()
+    if no_write:
+        return out
 
 
 if __name__ == '__main__':
@@ -167,6 +202,5 @@ if __name__ == '__main__':
                         action='store_false', default=False)
 
     args = parser.parse_args()
-    aln = Align(args.global_consensus, args.local_consensus, args.fasta,
+    main(args.global_consensus, args.local_consensus, args.fasta,
                 no_write=args.nowrite, cpus=args.cpus)
-    aln.run()

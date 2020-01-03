@@ -269,8 +269,7 @@ def scaninputline(inputline):
             options["f2py_wrapper_output"] = l
         elif f == 1:
             try:
-                with open(l):
-                    pass
+                open(l).close()
                 files.append(l)
             except IOError as detail:
                 errmess('IOError: %s. Skipping file "%s".\n' %
@@ -334,8 +333,9 @@ def callcrackfortran(files, options):
         if options['signsfile'][-6:] == 'stdout':
             sys.stdout.write(pyf)
         else:
-            with open(options['signsfile'], 'w') as f:
-                f.write(pyf)
+            f = open(options['signsfile'], 'w')
+            f.write(pyf)
+            f.close()
     if options["coutput"] is None:
         for mod in postlist:
             mod["coutput"] = "%smodule.c" % mod["name"]

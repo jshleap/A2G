@@ -5,6 +5,7 @@ __all__ = ['atleast_1d', 'atleast_2d', 'atleast_3d', 'block', 'hstack',
 
 import functools
 import operator
+import types
 import warnings
 
 from . import numeric as _nx
@@ -47,13 +48,13 @@ def atleast_1d(*arys):
     Examples
     --------
     >>> np.atleast_1d(1.0)
-    array([1.])
+    array([ 1.])
 
     >>> x = np.arange(9.0).reshape(3,3)
     >>> np.atleast_1d(x)
-    array([[0., 1., 2.],
-           [3., 4., 5.],
-           [6., 7., 8.]])
+    array([[ 0.,  1.,  2.],
+           [ 3.,  4.,  5.],
+           [ 6.,  7.,  8.]])
     >>> np.atleast_1d(x) is x
     True
 
@@ -105,11 +106,11 @@ def atleast_2d(*arys):
     Examples
     --------
     >>> np.atleast_2d(3.0)
-    array([[3.]])
+    array([[ 3.]])
 
     >>> x = np.arange(3.0)
     >>> np.atleast_2d(x)
-    array([[0., 1., 2.]])
+    array([[ 0.,  1.,  2.]])
     >>> np.atleast_2d(x).base is x
     True
 
@@ -123,7 +124,7 @@ def atleast_2d(*arys):
         if ary.ndim == 0:
             result = ary.reshape(1, 1)
         elif ary.ndim == 1:
-            result = ary[newaxis, :]
+            result = ary[newaxis,:]
         else:
             result = ary
         res.append(result)
@@ -165,7 +166,7 @@ def atleast_3d(*arys):
     Examples
     --------
     >>> np.atleast_3d(3.0)
-    array([[[3.]]])
+    array([[[ 3.]]])
 
     >>> x = np.arange(3.0)
     >>> np.atleast_3d(x).shape
@@ -178,7 +179,7 @@ def atleast_3d(*arys):
     True
 
     >>> for arr in np.atleast_3d([1, 2], [[1, 2]], [[[1, 2]]]):
-    ...     print(arr, arr.shape) # doctest: +SKIP
+    ...     print(arr, arr.shape)
     ...
     [[[1]
       [2]]] (1, 2, 1)
@@ -193,9 +194,9 @@ def atleast_3d(*arys):
         if ary.ndim == 0:
             result = ary.reshape(1, 1, 1)
         elif ary.ndim == 1:
-            result = ary[newaxis, :, newaxis]
+            result = ary[newaxis,:, newaxis]
         elif ary.ndim == 2:
-            result = ary[:, :, newaxis]
+            result = ary[:,:, newaxis]
         else:
             result = ary
         res.append(result)
@@ -214,6 +215,11 @@ def _arrays_for_stack_dispatcher(arrays, stacklevel=4):
                       FutureWarning, stacklevel=stacklevel)
         return ()
     return arrays
+
+
+def _warn_for_nonsequence(arrays):
+    if not overrides.ENABLE_ARRAY_FUNCTION:
+        _arrays_for_stack_dispatcher(arrays, stacklevel=4)
 
 
 def _vhstack_dispatcher(tup):
@@ -273,13 +279,8 @@ def vstack(tup):
            [4]])
 
     """
-    if not overrides.ARRAY_FUNCTION_ENABLED:
-        # raise warning if necessary
-        _arrays_for_stack_dispatcher(tup, stacklevel=2)
-    arrs = atleast_2d(*tup)
-    if not isinstance(arrs, list):
-        arrs = [arrs]
-    return _nx.concatenate(arrs, 0)
+    _warn_for_nonsequence(tup)
+    return _nx.concatenate([atleast_2d(_m) for _m in tup], 0)
 
 
 @array_function_dispatch(_vhstack_dispatcher)
@@ -330,13 +331,8 @@ def hstack(tup):
            [3, 4]])
 
     """
-    if not overrides.ARRAY_FUNCTION_ENABLED:
-        # raise warning if necessary
-        _arrays_for_stack_dispatcher(tup, stacklevel=2)
-
-    arrs = atleast_1d(*tup)
-    if not isinstance(arrs, list):
-        arrs = [arrs]
+    _warn_for_nonsequence(tup)
+    arrs = [atleast_1d(_m) for _m in tup]
     # As a special case, dimension 0 of 1-dimensional arrays is "horizontal"
     if arrs and arrs[0].ndim == 1:
         return _nx.concatenate(arrs, 0)
@@ -358,9 +354,9 @@ def stack(arrays, axis=0, out=None):
     """
     Join a sequence of arrays along a new axis.
 
-    The ``axis`` parameter specifies the index of the new axis in the
-    dimensions of the result. For example, if ``axis=0`` it will be the first
-    dimension and if ``axis=-1`` it will be the last dimension.
+    The `axis` parameter specifies the index of the new axis in the dimensions
+    of the result. For example, if ``axis=0`` it will be the first dimension
+    and if ``axis=-1`` it will be the last dimension.
 
     .. versionadded:: 1.10.0
 
@@ -368,10 +364,8 @@ def stack(arrays, axis=0, out=None):
     ----------
     arrays : sequence of array_like
         Each array must have the same shape.
-
     axis : int, optional
         The axis in the result array along which the input arrays are stacked.
-
     out : ndarray, optional
         If provided, the destination to place the result. The shape must be
         correct, matching that of what stack would have returned if no
@@ -412,10 +406,7 @@ def stack(arrays, axis=0, out=None):
            [3, 4]])
 
     """
-    if not overrides.ARRAY_FUNCTION_ENABLED:
-        # raise warning if necessary
-        _arrays_for_stack_dispatcher(arrays, stacklevel=2)
-
+    _warn_for_nonsequence(arrays)
     arrays = [asanyarray(arr) for arr in arrays]
     if not arrays:
         raise ValueError('need at least one array to stack')
@@ -430,14 +421,6 @@ def stack(arrays, axis=0, out=None):
     sl = (slice(None),) * axis + (_nx.newaxis,)
     expanded_arrays = [arr[sl] for arr in arrays]
     return _nx.concatenate(expanded_arrays, axis=axis, out=out)
-
-
-# Internal functions to eliminate the overhead of repeated dispatch in one of
-# the two possible paths inside np.block.
-# Use getattr to protect against __array_function__ being disabled.
-_size = getattr(_nx.size, '__wrapped__', _nx.size)
-_ndim = getattr(_nx.ndim, '__wrapped__', _nx.ndim)
-_concatenate = getattr(_nx.concatenate, '__wrapped__', _nx.concatenate)
 
 
 def _block_format_index(index):
@@ -520,8 +503,8 @@ def _block_check_depths_match(arrays, parent_index=[]):
         return parent_index + [None], 0, 0
     else:
         # We've 'bottomed out' - arrays is either a scalar or an array
-        size = _size(arrays)
-        return parent_index, _ndim(arrays), size
+        size = _nx.size(arrays)
+        return parent_index, _nx.ndim(arrays), size
 
 
 def _atleast_nd(a, ndim):
@@ -568,10 +551,10 @@ def _concatenate_shapes(shapes, axis):
         ret[(slice(None),) * axis + sl_c] == c
         ```
 
-        These are called slice prefixes since they are used in the recursive
+        Thses are called slice prefixes since they are used in the recursive
         blocking algorithm to compute the left-most slices during the
         recursion. Therefore, they must be prepended to rest of the slice
-        that was computed deeper in the recursion.
+        that was computed deeper in the recusion.
 
         These are returned as tuples to ensure that they can quickly be added
         to existing slice tuple without creating a new tuple everytime.
@@ -664,7 +647,7 @@ def _block(arrays, max_depth, result_ndim, depth=0):
     if depth < max_depth:
         arrs = [_block(arr, max_depth, result_ndim, depth+1)
                 for arr in arrays]
-        return _concatenate(arrs, axis=-(max_depth-depth))
+        return _nx.concatenate(arrs, axis=-(max_depth-depth))
     else:
         # We've 'bottomed out' - arrays is either a scalar or an array
         # type(arrays) is not list
@@ -778,11 +761,11 @@ def block(arrays):
     ...     [A,               np.zeros((2, 3))],
     ...     [np.ones((3, 2)), B               ]
     ... ])
-    array([[2., 0., 0., 0., 0.],
-           [0., 2., 0., 0., 0.],
-           [1., 1., 3., 0., 0.],
-           [1., 1., 0., 3., 0.],
-           [1., 1., 0., 0., 3.]])
+    array([[ 2.,  0.,  0.,  0.,  0.],
+           [ 0.,  2.,  0.,  0.,  0.],
+           [ 1.,  1.,  3.,  0.,  0.],
+           [ 1.,  1.,  0.,  3.,  0.],
+           [ 1.,  1.,  0.,  0.,  3.]])
 
     With a list of depth 1, `block` can be used as `hstack`
 
@@ -792,7 +775,7 @@ def block(arrays):
     >>> a = np.array([1, 2, 3])
     >>> b = np.array([2, 3, 4])
     >>> np.block([a, b, 10])             # hstack([a, b, 10])
-    array([ 1,  2,  3,  2,  3,  4, 10])
+    array([1, 2, 3, 2, 3, 4, 10])
 
     >>> A = np.ones((2, 2), int)
     >>> B = 2 * A
@@ -854,9 +837,9 @@ def block(arrays):
         return _block_concatenate(arrays, list_ndim, result_ndim)
 
 
-# These helper functions are mostly used for testing.
+# Theses helper functions are mostly used for testing.
 # They allow us to write tests that directly call `_block_slicing`
-# or `_block_concatenate` without blocking large arrays to force the wisdom
+# or `_block_concatenate` wtihout blocking large arrays to forse the wisdom
 # to trigger the desired path.
 def _block_setup(arrays):
     """
@@ -882,7 +865,7 @@ def _block_slicing(arrays, list_ndim, result_ndim):
 
     # Test preferring F only in the case that all input arrays are F
     F_order = all(arr.flags['F_CONTIGUOUS'] for arr in arrays)
-    C_order = all(arr.flags['C_CONTIGUOUS'] for arr in arrays)
+    C_order =  all(arr.flags['C_CONTIGUOUS'] for arr in arrays)
     order = 'F' if F_order and not C_order else 'C'
     result = _nx.empty(shape=shape, dtype=dtype, order=order)
     # Note: In a c implementation, the function
