@@ -12,13 +12,13 @@ with open(path.join(this_directory, 'requirements.txt'), encoding='utf-8'
 
 setup(
     name='A2G',
-    version='2019.0.0',
+    version=version,
     packages=find_packages() + ['A2G'],
     url='https://github.com/jshleap/A2G',
     license='GNU v3',
     author='jshleap',
     author_email='jshleap@gmail.com',
-    scripts=['bin/A2G'],
+    scripts=['bin/A2G', 'bin/A2G_mpi'],
     description='Accurarate amplicon alignment to gene consensus',
     python_requires='>=3.6',
     install_requires=[requirements],

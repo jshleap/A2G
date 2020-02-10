@@ -1,0 +1,11 @@
+#!/usr/bin/env python
+
+from mpi4py import MPI
+from A2G.align2consensus import *
+
+def split_n_yield(fasta, chunks):
+    n_seqs =
+    
+comm = MPI.COMM_WORLD
+size = comm.Get_size()
+rank = comm.Get_rank()

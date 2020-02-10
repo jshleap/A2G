@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 
 from A2G.align2consensus import *
+from A2G.__version__ import version
+from termcolor import colored
+
+print('\nA2G version:', colored(version, None, attrs=["bold", "blink"]))
+print(colored('Copyright 2020', 'red', attrs=["bold"]), 'Jose Sergio Hleap\n')
 
 parser = argparse.ArgumentParser()
 parser.add_argument('global_consensus', help='Sequence consensus of the '
@@ -17,4 +22,4 @@ parser.add_argument('--nowrite', help='return string instead of writing',
 
 args = parser.parse_args()
 main(args.global_consensus, args.local_consensus, args.fasta,
-            no_write=args.nowrite, cpus=args.cpu)
+            no_write=args.nowrite, cpus=args.cpus)

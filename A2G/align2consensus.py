@@ -29,6 +29,7 @@ from tqdm.auto import tqdm
 
 from A2G.SeqIO import *
 from justblast.utils import FastX
+import atexit
 
 
 # TODO: add checkpoints within the alignment
@@ -57,21 +58,22 @@ def pickle_at_exit(align_instance):
 
 class Align(object):
     current = None
+    query = None
 
     def __init__(self, gene_consensus: str, amplicon_consensus: str,
-                 query: str, no_write: bool = False, outliers: bool = True,
+                 out_prefix: str = 'A2G_aln', no_write: bool = False,
+                 outliers: bool = True, remove_duplicates: bool = True,
                  cpus: int = -1):
+        self.out_prefix = out_prefix
         self.entropy = outliers
-        self.out_prefix = query[: query.rfind('.')]
+        self.remove_duplicates = remove_duplicates
         self.no_write = no_write
         self.cpus = cpus
         self.gene_consensus = gene_consensus
         self.amplicon_consensus = amplicon_consensus
         self.reference = (gene_consensus, amplicon_consensus)
-        self.query = query
-        self.clf = IsolationForest(behaviour="new", max_samples='auto',
-                                   random_state=12345, contamination='auto',
-                                   n_jobs=cpus)
+        self.clf = IsolationForest(max_samples='auto', random_state=12345,
+                                   contamination='auto', n_jobs=cpus)
 
     @property
     def reference(self):
@@ -80,8 +82,6 @@ class Align(object):
     @reference.setter
     def reference(self, sequences: Tuple[str, str]):
         gene_consensus, amplicon_consensus = sequences
-        # executable = os.path.abspath(os.path.join(os.path.dirname(__file__),
-        #                                           os.pardir, 'bin', 'mafft'))
         executable= 'mafft'
         mafft = [executable, '--auto', '-']
         with open(gene_consensus) as gc, open(amplicon_consensus) as ac:
@@ -98,13 +98,16 @@ class Align(object):
 
     @query.setter
     def query(self, query: str):
-        self.__query = FastX(query, cpus=self.cpus, unique=True)
+        self.__query = FastX(query, cpus=self.cpus,
+                             unique=self.remove_duplicates)
+        if not isinstance(self.__query.handle, StringIO):
+            self.out_prefix = os.path.basename(query[: query.rfind('.')])
+
 
     @staticmethod
     def triwise(reference: str, query: str, entropy: bool = True,
                 long: bool = False):
-        executable = 'mafft' #os.path.abspath(os.path.join(os.path.dirname(__file__),
-                      #                            os.pardir, 'bin', 'mafft'))
+        executable = 'mafft'
         if len(query) > 50000 and not long:
             # Very long sequences might kill the process
             return None, None, query
@@ -140,7 +143,7 @@ class Align(object):
         else:
             results = Parallel(n_jobs=self.cpus)(
                 delayed(self.triwise)(self.reference, sequence,
-                                      entropy=self.entropy ) for sequence
+                                      entropy=self.entropy) for sequence
                 in tqdm(self.query.yield_seq(), desc='Aligning',
                         total=len(self.query)))
             with open(dill_name, 'wb') as d:
@@ -179,12 +182,16 @@ class Align(object):
 
 
 def main(global_consensus: str, local_consensus: str, fasta: str,
-         no_write: bool = False, cpus: int = -1):
-    aln = Align(global_consensus, local_consensus, fasta, no_write=no_write,
-                cpus=cpus)
+         no_write: bool = False, cpus: int = -1, out_prefix: str = 'A2G_aln',
+         remove_duplicates: bool = True):
+    kwargs = dict(out_prefix=out_prefix, no_write=no_write, cpus=cpus,
+                  remove_duplicates=remove_duplicates)
+    aln = Align(global_consensus, local_consensus, **kwargs)
+    aln.query = fasta
     out = aln.run()
     if no_write:
         return out
+
 
 
 if __name__ == '__main__':
@@ -200,7 +207,13 @@ if __name__ == '__main__':
                         type=int)
     parser.add_argument('--nowrite', help='return string instead of writing',
                         action='store_false', default=False)
+    parser.add_argument('--remove_duplicates', action='store_false',
+                        help='Keep or remove duplicated sequences',
+                        default=True)
+    parser.add_argument('--out_prefix', action='store', default='A2G_aln',
+                        help='Prefix of outputs')
 
     args = parser.parse_args()
     main(args.global_consensus, args.local_consensus, args.fasta,
-                no_write=args.nowrite, cpus=args.cpus)
+         no_write=args.nowrite, cpus=args.cpus,
+         remove_duplicates=args.remove_duplicates)
