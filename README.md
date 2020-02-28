@@ -16,3 +16,44 @@ massive alignments often introduce more gaps in the sequences, and force
 alignment of segments that should not align in that region.
 Here is where A2G<sup>2</sup> will use a global to local alignment to 
 avoid such issues, and retained the ungapped alignment of the amplicons.
+
+## Basic usage
+A2G will give you help by:
+```bash
+A2G -h
+```
+this should give you something like this:
+
+```bash
+A2G version: 2020.0.1
+Copyright 2020 Jose Sergio Hleap
+
+usage: A2G [-h] [--cpus CPUS] [--nowrite] [--out_prefix OUT_PREFIX]
+           [--remove_duplicates]
+           global_consensus local_consensus fasta
+
+positional arguments:
+  global_consensus      Sequence consensus of the global region, e.g. full COI
+  local_consensus       Sequence consensus of the local region, e.g. Leray
+                        fragment
+  fasta                 fasta file with the focal sequences
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --cpus CPUS           number of cpus to use
+  --nowrite             return string instead of writing
+  --out_prefix OUT_PREFIX
+                        Prefix of outputs
+  --remove_duplicates   Keep or remove duplicated sequences
+```
+
+Then to run it, you can simply type:
+
+```bash
+A2G global_target local_target query_file --cpus 10 --out_prefix prefix --remove_duplicates
+```
+With this command, you will use the `global_target` as the overall region, the `local_target` as the amplicon reference
+ sequence to anchor the query sequences, and `query_file` contains your query sequences. Those are the required 
+ arguments. The optional arguments allow you to control the execution. `--cpus` allow you to provide the number of cpus
+ to use. In the example, up to 10 cpus will be used. `--out_prefix`change the prefix of the outputs generated. Finally,
+  the `--remove_duplicates` option will retain only unique sequences.
