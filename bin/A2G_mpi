@@ -29,8 +29,8 @@ parser.add_argument('local_consensus',
                     help='Sequence consensus of the local region, e.g. '
                          'Leray fragment')
 parser.add_argument('fasta', help='fasta file with the focal sequences')
-parser.add_argument('--cpus_per_node', help='number of cpus per node', default=-1,
-                    type=int)
+# parser.add_argument('--cpus_per_node', help='number of cpus per node', default=-1,
+#                     type=int)
 parser.add_argument('--out_prefix', action='store', default='A2G_aln',
                     help='Prefix of outputs')
 parser.add_argument('--remove_duplicates', action='store_false',
