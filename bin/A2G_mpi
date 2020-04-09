@@ -45,7 +45,9 @@ rank = comm.Get_rank()
 
 if rank == 0:
     fasta = split_n_yield(args.fasta, size)
-    aln = Align(**vars(args), no_write=True)
+    aln = Align(gene_consensus=args.global_consensus,
+                amplicon_consensus=args.local_consensus, no_write=True,
+                out_prefix=args.out_prefix)
     data = list(zip(fasta, cycle([aln])))
 else:
     data = None
