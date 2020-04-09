@@ -190,10 +190,9 @@ def main(db: str, query: str, evalue: int = 10, p_id: float = 0,
     blast.write()
 
 
-
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        prog='PROG', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+        prog='justblast', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('query', help='Fasta file with query sequences')
     parser.add_argument('db', help='path to blast database', default='nt')
     parser.add_argument('-e', '--evalue', default=10, type=float,

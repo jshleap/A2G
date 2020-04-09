@@ -30,6 +30,8 @@ import numpy as np
 from joblib import Parallel, delayed
 from psutil import virtual_memory
 from tqdm import tqdm
+from io import StringIO
+from pyfaidx import Fasta
 
 plt.style.use('ggplot')
 
@@ -95,14 +97,18 @@ class FastX(object):
 
     @tipo.setter
     def tipo(self, filename: str) -> None:
-        try:
-            with gzip.open(filename, 'rb') as fi:
-                line = fi.readline().decode('utf-8')
-                self.open = gzip.open
-        except OSError:
-            with open(filename) as fi:
-                line = fi.readline()
-                self.open = open
+        if filename.startswith('>') or filename.startswith('@'):
+            self.open = StringIO
+            line = filename.split('\n')[0]
+        else:
+            try:
+                with gzip.open(filename, 'rb') as fi:
+                    line = fi.readline().decode('utf-8')
+                    self.open = gzip.open
+            except OSError:
+                with open(filename) as fi:
+                    line = fi.readline()
+                    self.open = open
         if line.startswith('>'):
             self._tipo = 'a'
         elif line.startswith('@'):
@@ -135,15 +141,19 @@ class FastX(object):
         else:
             self.parse_fastq(self.filename)
 
-    def yield_seq(self, as_fasta: bool = True) -> Iterator[str]:
-        for name in self.ids:
-            seq = self.store[name][0]
+    def yield_seq(self, as_fasta: bool = True, done: list = []
+                  ) -> Iterator[str]:
+        to_iter = set(self.ids).difference(done)
+        for name in to_iter:
+            seq = self.store[name][0] if self.tipo == 'q' else self.store[name]
+            if self.trimm:
+                seq = seq[:self.trimm]
             if self.unique and (seq in self.uniques):
                 self.n_duplicates += 1
                 continue
             if as_fasta:
                 name = name.replace('@', '')
-                seq = '>%s\n%s' % (name, '\n'.join(wrap(seq, 80)))
+                seq = '>%s\n%s' % (name, '\n'.join(wrap(str(seq), 80)))
             else:
                 seq = '@%s\n%s\n+\n%s' % (name, seq, seq)
             self.uniques.append(seq)
@@ -192,23 +202,25 @@ class FastX(object):
             return name, len(seq), (name, (seq, qual))
 
     def parse_fasta(self, file_name: str) -> None:
-        name, seq = None, ''
-        for line in tqdm(self.handle, desc="Parsing %s" % file_name):
-            line = line.decode('utf-8').strip() if isinstance(
-                line, bytes) else line.strip()
-            if line.startswith(">"):
-                if name:
-                    seq = seq if self.trimm is None else seq[:self.trimm]
-                    self.store[name] = (seq, None)
-                    self.ids = np.append(self.ids, name)
-                name = line[1:]
-                seq = ''
-            else:
-                seq += line
-        if name:
-            seq = seq if self.trimm is None else seq[:self.trimm]
-            self.store[name] = (seq, '')
-            self.ids = np.append(self.ids, name)
+        self.store = Fasta(file_name)
+        self.ids = self.store.keys()
+        # name, seq = None, ''
+        # for line in tqdm(self.handle, desc="Parsing %s" % file_name):
+        #     line = line.decode('utf-8').strip() if isinstance(
+        #         line, bytes) else line.strip()
+        #     if line.startswith(">"):
+        #         if name:
+        #             seq = seq if self.trimm is None else seq[:self.trimm]
+        #             self.store[name] = (seq, None)
+        #             self.ids = np.append(self.ids, name)
+        #         name = line[1:]
+        #         seq = ''
+        #     else:
+        #         seq += line
+        # if name:
+        #     seq = seq if self.trimm is None else seq[:self.trimm]
+        #     self.store[name] = (seq, '')
+        #     self.ids = np.append(self.ids, name)
 
     def write(self, fasta: bool = True) -> None:
         if fasta:
