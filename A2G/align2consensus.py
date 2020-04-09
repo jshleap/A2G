@@ -29,7 +29,6 @@ from tqdm.auto import tqdm
 
 from A2G.SeqIO import *
 from justblast.utils import FastX
-import atexit
 
 
 # TODO: add checkpoints within the alignment
@@ -58,7 +57,6 @@ def pickle_at_exit(align_instance):
 
 class Align(object):
     current = None
-    query = None
 
     def __init__(self, gene_consensus: str, amplicon_consensus: str,
                  out_prefix: str = 'A2G_aln', no_write: bool = False,
@@ -141,7 +139,7 @@ class Align(object):
             with open(dill_name, 'rb') as d:
                 results = dill.load(d)
         else:
-            results = Parallel(n_jobs=self.cpus)(
+            results = Parallel(n_jobs=self.cpus, prefer="threads")(
                 delayed(self.triwise)(self.reference, sequence,
                                       entropy=self.entropy) for sequence
                 in tqdm(self.query.yield_seq(), desc='Aligning',
@@ -188,10 +186,9 @@ def main(global_consensus: str, local_consensus: str, fasta: str,
                   remove_duplicates=remove_duplicates)
     aln = Align(global_consensus, local_consensus, **kwargs)
     aln.query = fasta
-    out = aln.run()
+    full, subset = aln.run()
     if no_write:
-        return out
-
+        return full, subset
 
 
 if __name__ == '__main__':
@@ -214,6 +211,8 @@ if __name__ == '__main__':
                         help='Prefix of outputs')
 
     args = parser.parse_args()
-    main(args.global_consensus, args.local_consensus, args.fasta,
-         no_write=args.nowrite, cpus=args.cpus,
-         remove_duplicates=args.remove_duplicates)
+    fasta = main(args.global_consensus, args.local_consensus, args.fasta,
+                 no_write=args.nowrite, cpus=args.cpus,
+                 remove_duplicates=args.remove_duplicates)
+    if fasta is not None:
+        print(fasta[0])

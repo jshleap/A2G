@@ -1,8 +1,12 @@
 #!/usr/bin/env python
 
+from itertools import zip_longest, cycle
+
 from mpi4py import MPI
-from itertools import zip_longest
 from pyfaidx import Fasta
+from termcolor import colored
+
+from A2G.__version__ import version
 from A2G.align2consensus import *
 
 
@@ -14,7 +18,53 @@ def split_n_yield(fasta, chunks):
         fasta_chunk = ['>%s/n%s' % (sq[1].long_name, sq[1]) for sq in chunk]
         yield '\n'.join(fasta_chunk)
 
-    
+
+print('\nA2G_mpi version:', colored(version, None, attrs=["bold", "blink"]))
+print(colored('Copyright 2020', 'red', attrs=["bold"]), 'Jose Sergio Hleap\n')
+
+parser = argparse.ArgumentParser()
+parser.add_argument('global_consensus', help='Sequence consensus of the '
+                                             'global region, e.g. full COI')
+parser.add_argument('local_consensus',
+                    help='Sequence consensus of the local region, e.g. '
+                         'Leray fragment')
+parser.add_argument('fasta', help='fasta file with the focal sequences')
+parser.add_argument('--cpus_per_node', help='number of cpus per node', default=-1,
+                    type=int)
+parser.add_argument('--out_prefix', action='store', default='A2G_aln',
+                    help='Prefix of outputs')
+parser.add_argument('--remove_duplicates', action='store_false',
+                    help='Keep or remove duplicated sequences',
+                    default=True)
+
+args = parser.parse_args()
+
 comm = MPI.COMM_WORLD
 size = comm.Get_size()
 rank = comm.Get_rank()
+
+if rank == 0:
+    fasta = split_n_yield(args.fasta, size)
+    aln = Align(**vars(args), no_write=True)
+    data = list(zip(fasta, cycle([aln])))
+else:
+    data = None
+
+data = comm.scatter(data, root=0)
+results = []
+for job in data:
+    aln = job[1]
+    aln.query = job[0]
+    results.append(aln.run())
+
+# Gather results on rank 0.
+results = comm.gather(results, root=0)
+
+if comm.rank == 0:
+    # Flatten list of lists.
+    results = [_i for temp in results for _i in temp]
+    fasta, subset = zip(*results)
+    with open('%s_aligned.fasta' % args.out_prefix, 'w') as o, open(
+            '%s_aligned.withoutliers' % args.out_prefix, 'w') as w:
+        o.write('\n'.join(fasta))
+        w.write('\n'.join(subset))
