@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from itertools import zip_longest, cycle
+from itertools import islice, cycle
 
 from mpi4py import MPI
 from pyfaidx import Fasta
@@ -12,11 +12,11 @@ from A2G.align2consensus import *
 
 def split_n_yield(fasta, chunks):
     fa = Fasta(fasta)
-    chunks = [fa.items()] * chunks
-    g = (list(filter(None, v)) for v in zip_longest(*chunks))
-    for chunk in g:
-        fasta_chunk = ['>%s/n%s' % (sq[1].long_name, sq[1]) for sq in chunk]
-        yield '\n'.join(fasta_chunk)
+    it = iter(fa.items())
+    piece = list(islice(it, chunks))
+    while piece:
+        yield '\n'.join(['>%s/n%s' % (sq[1].long_name, sq[1]) for sq in piece])
+        piece = list(islice(it, chunks))
 
 
 print('\nA2G_mpi version:', colored(version, None, attrs=["bold", "blink"]))
