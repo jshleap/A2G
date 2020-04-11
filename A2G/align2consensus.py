@@ -19,6 +19,7 @@ E-mail: jshleap@gmail.com
 """
 import argparse
 import os
+import sys
 import tempfile
 from subprocess import run, PIPE, CalledProcessError
 from typing import List
@@ -45,7 +46,7 @@ def execute(args: List[str], inpt: Optional[str]):
         if inpt is not None:
             for x in inpt.split(b'\n'):
                 if b'>' in x:
-                    print(x)
+                    print(x, file=sys.stderr)
         raise Exception(st.stderr.decode('utf-8'), st.stdout.decode('utf-8'))
     return st
 
@@ -106,9 +107,10 @@ class Align(object):
     def triwise(reference: str, query: str, entropy: bool = True,
                 long: bool = False):
         executable = 'mafft'
+        fasta, median_entropy = None, None
         if len(query) > 50000 and not long:
             # Very long sequences might kill the process
-            return None, None, query
+            return fasta, median_entropy, query
 
         with tempfile.NamedTemporaryFile(dir=os.getcwd()) as temp:
             temp.write(query.encode('utf-8'))
@@ -169,10 +171,10 @@ class Align(object):
             -1, 1)
         outl = self.clf.fit_predict(shannon)
         l = "Outliers removed in %s_aligned.withoutoutliers:" % self.out_prefix
-        print(l, sum(outl < 0))
+        print(l, sum(outl < 0), file=sys.stderr)
         subset = [x for i, x in enumerate(fasta) if outl[i] != -1]
         if self.no_write:
-            return fasta, subset
+            return '\n'.join(fasta), '\n'.join(subset)
         with open('%s_aligned.fasta' % self.out_prefix, 'w') as o, open(
                 '%s_aligned.withoutliers' % self.out_prefix, 'w') as w:
             o.write('\n'.join(fasta))
@@ -203,7 +205,7 @@ if __name__ == '__main__':
     parser.add_argument('--cpus', help='number of cpus to use', default=-1,
                         type=int)
     parser.add_argument('--nowrite', help='return string instead of writing',
-                        action='store_false', default=False)
+                        action='store_true', default=False)
     parser.add_argument('--remove_duplicates', action='store_false',
                         help='Keep or remove duplicated sequences',
                         default=True)
@@ -215,4 +217,4 @@ if __name__ == '__main__':
                  no_write=args.nowrite, cpus=args.cpus,
                  remove_duplicates=args.remove_duplicates)
     if fasta is not None:
-        print(fasta[0])
+        print(fasta[0], file=sys.stdout)

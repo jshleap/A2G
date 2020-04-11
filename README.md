@@ -18,7 +18,7 @@ Here is where A2G<sup>2</sup> will use a global to local alignment to
 avoid such issues, and retained the ungapped alignment of the amplicons.
 
 ## Basic usage
-A2G will give you help by:
+A2G<sup>2</sup> will give you help by:
 ```bash
 A2G -h
 ```
@@ -57,3 +57,11 @@ With this command, you will use the `global_target` as the overall region, the `
  arguments. The optional arguments allow you to control the execution. `--cpus` allow you to provide the number of cpus
  to use. In the example, up to 10 cpus will be used. `--out_prefix`change the prefix of the outputs generated. Finally,
   the `--remove_duplicates` option will retain only unique sequences.
+
+If the `no_write` option is used, A2G<sup>2</sup> will output the alignment
+to standard out, and other info to standard error. If you would like to pipe
+only the alignment, you can redirect the standard error to a nul device:
+
+```bash
+A2G global_target local_target query_file --cpus 10 --out_prefix prefix --no_write 2> /dev/null
+```
