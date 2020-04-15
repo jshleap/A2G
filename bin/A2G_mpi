@@ -12,11 +12,12 @@ from A2G.align2consensus import *
 
 def split_n_yield(fasta, chunks):
     fa = Fasta(fasta)
+    n_items = int(np.ceil(len(fa.items()) / chunks))
     it = iter(fa.items())
-    piece = list(islice(it, chunks))
+    piece = list(islice(it, n_items))
     while piece:
         yield '\n'.join(['>%s/n%s' % (sq[1].long_name, sq[1]) for sq in piece])
-        piece = list(islice(it, chunks))
+        piece = list(islice(it, n_items))
 
 
 print('\nA2G_mpi version:', colored(version, None, attrs=["bold", "blink"]))
