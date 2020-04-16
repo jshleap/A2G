@@ -179,6 +179,7 @@ class Align(object):
                 '%s_aligned.withoutliers' % self.out_prefix, 'w') as w:
             o.write('\n'.join(fasta))
             w.write('\n'.join(subset))
+        return None, None
 
 
 def main(global_consensus: str, local_consensus: str, fasta: str,
