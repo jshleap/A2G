@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from itertools import islice, cycle
+from itertools import islice
 
 from mpi4py import MPI
 from pyfaidx import Fasta
@@ -20,8 +20,16 @@ def split_n_yield(fasta, chunks):
         piece = list(islice(it, n_items))
 
 
-print('\nA2G_mpi version:', colored(version, None, attrs=["bold", "blink"]))
-print(colored('Copyright 2020', 'red', attrs=["bold"]), 'Jose Sergio Hleap\n')
+comm = MPI.COMM_WORLD
+size = comm.Get_size()
+rank = comm.Get_rank()
+
+if rank == 0:
+    print('\nA2G_mpi version:', colored(version, None, attrs=["bold", "blink"]))
+    print(colored('Copyright 2020', 'red', attrs=["bold"]), 'Jose Sergio Hleap\n')
+    print("-" * 78)
+    print(" Running on %d cores" % size)
+    print("-" * 78)
 
 parser = argparse.ArgumentParser()
 parser.add_argument('global_consensus', help='Sequence consensus of the '
@@ -30,8 +38,6 @@ parser.add_argument('local_consensus',
                     help='Sequence consensus of the local region, e.g. '
                          'Leray fragment')
 parser.add_argument('fasta', help='fasta file with the focal sequences')
-# parser.add_argument('--cpus_per_node', help='number of cpus per node', default=-1,
-#                     type=int)
 parser.add_argument('--out_prefix', action='store', default='A2G_aln',
                     help='Prefix of outputs')
 parser.add_argument('--remove_duplicates', action='store_false',
@@ -40,24 +46,22 @@ parser.add_argument('--remove_duplicates', action='store_false',
 
 args = parser.parse_args()
 
-comm = MPI.COMM_WORLD
-size = comm.Get_size()
-rank = comm.Get_rank()
+aln = Align(gene_consensus=args.global_consensus,
+            amplicon_consensus=args.local_consensus, no_write=True,
+            out_prefix=args.out_prefix)
 
 if rank == 0:
-    fasta = split_n_yield(args.fasta, size)
-    aln = Align(gene_consensus=args.global_consensus,
-                amplicon_consensus=args.local_consensus, no_write=True,
-                out_prefix=args.out_prefix)
-    data = list(zip(fasta, cycle([aln])))
+    data = list(split_n_yield(args.fasta, size))
+    # data = list(zip(fasta, cycle([aln])))
 else:
     data = None
 
 data = comm.scatter(data, root=0)
 results = []
-for job in data:
-    aln = job[1]
-    aln.query = job[0]
+for idx, job in enumerate(data):
+    aln.out_prefix = '%s_%s' % (args.out_prefix, idx)
+    print(job)
+    aln.query = job
     results.append(aln.run())
 
 # Gather results on rank 0.
