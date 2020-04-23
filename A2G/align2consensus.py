@@ -25,6 +25,7 @@ from subprocess import run, PIPE, CalledProcessError
 from typing import List
 
 import dill
+from psutil import Process, cpu_count
 from sklearn.ensemble import IsolationForest
 from tqdm.auto import tqdm
 
@@ -102,17 +103,16 @@ class Align(object):
         if not isinstance(self.__query.handle, StringIO):
             self.out_prefix = os.path.basename(query[: query.rfind('.')])
 
-
     @staticmethod
     def triwise(reference: str, query: str, entropy: bool = True,
-                long: bool = False):
+                long: bool = False, current_file: str = 'current.aln'):
         executable = 'mafft'
         fasta, median_entropy = None, None
         if len(query) > 50000 and not long:
             # Very long sequences might kill the process
             return fasta, median_entropy, query
 
-        with tempfile.NamedTemporaryFile(dir=os.getcwd()) as temp:
+        with tempfile.NamedTemporaryFile() as temp:
             temp.write(query.encode('utf-8'))
             temp.seek(0)
             mafft = [executable, '--thread', '1', '--keeplength', '--add',
@@ -120,7 +120,7 @@ class Align(object):
             # TODO: Implement plugins
             st = execute(mafft, None)
             alignment = st.stdout.decode('utf-8')
-            with open('current.aln', 'w') as a:
+            with open(current_file, 'w') as a:
                 a.write(alignment)
             aln = Alignment(alignment, outliers_detection=False, cpus=1)
             q = aln.seq.iloc[2]
@@ -141,11 +141,12 @@ class Align(object):
             with open(dill_name, 'rb') as d:
                 results = dill.load(d)
         else:
+            kwargs = dict(entropy=self.entropy,
+                          current_file='%s_current.aln' % self.out_prefix)
             results = Parallel(n_jobs=self.cpus, prefer="threads")(
-                delayed(self.triwise)(self.reference, sequence,
-                                      entropy=self.entropy) for sequence
-                in tqdm(self.query.yield_seq(), desc='Aligning',
-                        total=len(self.query)))
+                delayed(self.triwise)(self.reference, sequence, **kwargs)
+                for sequence in tqdm(self.query.yield_seq(), desc='Aligning',
+                                     total=len(self.query)))
             with open(dill_name, 'wb') as d:
                 dill.dump(results, d)
         fasta, shannon, longs = zip(*results)
@@ -185,6 +186,10 @@ class Align(object):
 def main(global_consensus: str, local_consensus: str, fasta: str,
          no_write: bool = False, cpus: int = -1, out_prefix: str = 'A2G_aln',
          remove_duplicates: bool = True):
+    p = Process()
+    n_cpus = cpus if cpus > 0 else cpu_count()
+    all_cpus = list(range(n_cpus))
+    p.cpu_affinity(all_cpus)
     kwargs = dict(out_prefix=out_prefix, no_write=no_write, cpus=cpus,
                   remove_duplicates=remove_duplicates)
     aln = Align(global_consensus, local_consensus, **kwargs)
@@ -212,8 +217,11 @@ if __name__ == '__main__':
                         default=True)
     parser.add_argument('--out_prefix', action='store', default='A2G_aln',
                         help='Prefix of outputs')
+    parser.add_argument('--mpi', action='store_true', default=False,
+                        help='Use MPI backend in multinode executions')
 
     args = parser.parse_args()
+
     fasta = main(args.global_consensus, args.local_consensus, args.fasta,
                  no_write=args.nowrite, cpus=args.cpus,
                  remove_duplicates=args.remove_duplicates)
