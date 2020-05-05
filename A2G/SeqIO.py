@@ -18,13 +18,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 E-mail: jshleap@gmail.com
 """
 from io import StringIO, TextIOWrapper
-from typing import Union, TextIO, Iterator, Tuple, Optional
-from joblib import Parallel, delayed
-import pandas as pd
-import numpy as np
 from textwrap import wrap
-from scipy.stats import entropy
+from typing import Union, TextIO, Iterator, Tuple, Optional
 
+import numpy as np
+import pandas as pd
+from joblib import Parallel, delayed
+from scipy.stats import entropy
 
 
 class Alignment(object):

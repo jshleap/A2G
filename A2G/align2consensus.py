@@ -100,8 +100,8 @@ class Align(object):
     def query(self, query: str):
         self.__query = FastX(query, cpus=self.cpus,
                              unique=self.remove_duplicates)
-        if not isinstance(self.__query.handle, StringIO):
-            self.out_prefix = os.path.basename(query[: query.rfind('.')])
+        # if not isinstance(self.__query.handle, StringIO):
+        #     self.out_prefix = os.path.basename(query[: query.rfind('.')])
 
     @staticmethod
     def triwise(reference: str, query: str, entropy: bool = True,
@@ -143,7 +143,7 @@ class Align(object):
         else:
             kwargs = dict(entropy=self.entropy,
                           current_file='%s_current.aln' % self.out_prefix)
-            results = Parallel(n_jobs=self.cpus, prefer="threads")(
+            results = Parallel(n_jobs=self.cpus)(
                 delayed(self.triwise)(self.reference, sequence, **kwargs)
                 for sequence in tqdm(self.query.yield_seq(), desc='Aligning',
                                      total=len(self.query)))
