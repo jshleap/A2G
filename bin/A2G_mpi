@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import time
 
 from mpi4py import MPI
 from pyfaidx import Fasta
@@ -51,7 +52,7 @@ args = parser.parse_args()
 comm = MPI.COMM_WORLD
 size = comm.Get_size()
 rank = comm.Get_rank()
-
+curr_time = time.time()
 sanity_checks(size, rank)
 
 if rank == 0:
@@ -95,3 +96,4 @@ if rank == 0:
             '%s_aligned.withoutliers' % args.out_prefix, 'w') as w:
         o.write('\n'.join(fasta))
         w.write('\n'.join(subset))
+    print('Elapsed time:', time.time() - curr_time)
