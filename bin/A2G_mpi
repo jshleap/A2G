@@ -73,10 +73,11 @@ else:
 data = comm.scatter(data, root=0)
 aln.query = data
 results = aln.run()
-newData = comm.gather(results, root=0)
+# newData = comm.gather(results, root=0)
 # if newData is not None:
 #     full, _ = zip(*newData)
 if rank == 0:
+    newData = comm.gather(results, root=0)
     fasta, subset = zip(*newData)
     # for i in newData:
     #     print('Head master data:', i[:20])
