@@ -74,17 +74,20 @@ data = comm.scatter(data, root=0)
 aln.query = data
 results = aln.run()
 newData = comm.gather(results, root=0)
-if newData is not None:
-    full, _ = zip(*newData)
+# if newData is not None:
+#     full, _ = zip(*newData)
 if rank == 0:
-    for i in newData:
-        print('Head master data:', i[:20])
+    fasta, subset = zip(*newData)
+    # for i in newData:
+    #     print('Head master data:', i[:20])
     print('MASTER LENGH', len(newData))
-    with open('result.aln', 'w') as f:
-        f.write('\n'.join(full))
+    print('FASTA LENGH', len(fasta))
+    print('SUBSET LENGH', len(subset))
+    # with open('result.aln', 'w') as f:
+    #     f.write('\n'.join(full))
     # Flatten list of lists.
-    results = [_i for temp in newData for _i in temp]
-    fasta, subset = zip(*results)
+    # results = [_i for temp in newData for _i in temp]
+    # fasta, subset = zip(*results)
     with open('%s_aligned.fasta' % args.out_prefix, 'w') as o, open(
             '%s_aligned.withoutliers' % args.out_prefix, 'w') as w:
         o.write('\n'.join(fasta))
