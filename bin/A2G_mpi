@@ -14,6 +14,25 @@ def split_n_yield(fasta, chunks):
         yield '\n'.join(['>%s/n%s' % (sq.long_name, sq) for sq in seq])
 
 
+def sanity_checks(size, rank):
+    # Do we only have one process?  If yes, then exit.
+    if size == 1:
+        print('You are running an MPI program with only one slot/task!')
+        print('Are you using `mpirun` (or `srun` when in SLURM)?')
+        print('If you are, then please use an `-n` of at least 2! (Or, when in'
+              ' SLURM, use an `--ntasks` of at least 2.)')
+        print('If you did all that, then your MPI setup may be bad.')
+        sys.exit()
+
+    # Is our world size over 999?  The output will be a bit weird.
+    # NOTE: Only rank zero does anything, so we don't get duplicate output.
+    if size >= 1000 and rank == 0:
+        print('WARNING:  Your world size {} is over 999!'.format(size))
+        print("The output formatting will be a little weird, but that's it.")
+
+    # Sanity checks complete!
+
+
 parser = argparse.ArgumentParser()
 parser.add_argument('global_consensus', help='Sequence consensus of the '
                                              'global region, e.g. full COI')
@@ -32,6 +51,8 @@ args = parser.parse_args()
 comm = MPI.COMM_WORLD
 size = comm.Get_size()
 rank = comm.Get_rank()
+
+sanity_checks(size, rank)
 
 if rank == 0:
     print('\nA2G_mpi version:', colored(version, None, attrs=["bold", "blink"]))
@@ -56,17 +77,13 @@ newData = comm.gather(results, root=0)
 if newData is not None:
     full, _ = zip(*newData)
 if rank == 0:
-    print('master:', newData)
+    for i in newData:
+        print('Head master data:', i[:20])
     print('MASTER LENGH', len(newData))
     with open('result.aln', 'w') as f:
         f.write('\n'.join(full))
-
-# Gather results on rank 0.
-results = comm.gather(results, root=0)
-
-if comm.rank == 0:
     # Flatten list of lists.
-    results = [_i for temp in results for _i in temp]
+    results = [_i for temp in newData for _i in temp]
     fasta, subset = zip(*results)
     with open('%s_aligned.fasta' % args.out_prefix, 'w') as o, open(
             '%s_aligned.withoutliers' % args.out_prefix, 'w') as w:

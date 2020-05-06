@@ -57,6 +57,10 @@ def pickle_at_exit(align_instance):
         dill.dump(align_instance, d)
 
 
+def exist_n_not_empty(file_path):
+    return os.path.isfile(file_path) and os.path.getsize(file_path) > 0
+
+
 class Align(object):
     current = None
 
@@ -81,16 +85,17 @@ class Align(object):
 
     @reference.setter
     def reference(self, sequences: Tuple[str, str]):
-        gene_consensus, amplicon_consensus = sequences
-        executable= 'mafft'
-        mafft = [executable, '--auto', '-']
-        with open(gene_consensus) as gc, open(amplicon_consensus) as ac:
-            refs = gc.read() + ac.read()
-        st = execute(mafft, refs)
-        alignment = st.stdout.decode('utf-8')
-        self.__reference = '%s_reference.aln' % self.out_prefix
-        with open(self.__reference, 'w') as r:
-            r.write(alignment)
+        self.__reference = '{}_reference.aln'.format(self.out_prefix)
+        if not exist_n_not_empty(self.__reference):
+            gene_consensus, amplicon_consensus = sequences
+            executable = 'mafft'
+            mafft = [executable, '--auto', '-']
+            with open(gene_consensus) as gc, open(amplicon_consensus) as ac:
+                refs = gc.read() + ac.read()
+            st = execute(mafft, refs)
+            alignment = st.stdout.decode('utf-8')
+            with open(self.__reference, 'w') as r:
+                r.write(alignment)
 
     @property
     def query(self):
