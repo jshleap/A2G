@@ -63,7 +63,7 @@ if rank == 0:
 
 aln = Align(gene_consensus=args.global_consensus, cpus=1,
             amplicon_consensus=args.local_consensus, no_write=True,
-            out_prefix=args.out_prefix)
+            out_prefix=args.out_prefix, quiet=True)
 
 if rank == 0:
     data = list(split_n_yield(args.fasta, size))
@@ -71,6 +71,8 @@ else:
     data = None
 
 data = comm.scatter(data, root=0)
+s_names = ','.join([x.split()[0] for x in data[0].split('\n')])
+print('rank', rank, 'has sequences:', s_names)
 aln.query = data
 results = aln.run()
 # newData = comm.gather(results, root=0)

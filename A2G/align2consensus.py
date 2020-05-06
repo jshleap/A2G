@@ -67,7 +67,8 @@ class Align(object):
     def __init__(self, gene_consensus: str, amplicon_consensus: str,
                  out_prefix: str = 'A2G_aln', no_write: bool = False,
                  outliers: bool = True, remove_duplicates: bool = True,
-                 cpus: int = -1):
+                 cpus: int = -1, quiet=False):
+        self.quiet = quiet
         self.out_prefix = out_prefix
         self.entropy = outliers
         self.remove_duplicates = remove_duplicates
@@ -176,8 +177,9 @@ class Align(object):
         shannon = np.array([x for x in shannon if x is not None]).reshape(
             -1, 1)
         outl = self.clf.fit_predict(shannon)
-        l = "Outliers removed in %s_aligned.withoutoutliers:" % self.out_prefix
-        print(l, sum(outl < 0), file=sys.stderr)
+        if not self.quiet:
+            l = "Outliers removed in %s_aligned.withoutoutliers:" % self.out_prefix
+            print(l, sum(outl < 0), file=sys.stderr)
         subset = [x for i, x in enumerate(fasta) if outl[i] != -1]
         if self.no_write:
             return '\n'.join(fasta), '\n'.join(subset)
