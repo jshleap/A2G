@@ -60,7 +60,7 @@ With this command, you will use the `global_target` as the overall region, the `
 
 If the `no_write` option is used, A2G<sup>2</sup> will output the alignment
 to standard out, and other info to standard error. If you would like to pipe
-only the alignment, you can redirect the standard error to a nul device:
+only the alignment, you can redirect the standard error to a null device:
 
 ```bash
 A2G global_target local_target query_file --cpus 10 --out_prefix prefix --no_write 2> /dev/null
