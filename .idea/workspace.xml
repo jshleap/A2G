@@ -1,254 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1c20949a-fdaa-46ee-8deb-1f6e5fd8dfd2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/A2G.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/justblast/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/justblast/__version__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/justblast/justblast.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/justblast/justblast_main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/justblast/utils.py" afterDir="false" />
+    <list default="true" id="1c20949a-fdaa-46ee-8deb-1f6e5fd8dfd2" name="Default Changelist" comment="Adding output on rank 0 for mpi, managing cpu affinity">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/A2G/align2consensus.py" beforeDir="false" afterPath="$PROJECT_DIR$/A2G/align2consensus.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy-1.17.4.dist-info/INSTALLER" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy-1.17.4.dist-info/METADATA" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy-1.17.4.dist-info/RECORD" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy-1.17.4.dist-info/WHEEL" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy-1.17.4.dist-info/entry_points.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy-1.17.4.dist-info/top_level.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/.libs/libgfortran-ed201abd.so.3.0.0" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/.libs/libgfortran-ed201abd.so.3.0.0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/.libs/libopenblasp-r0-34a18dc3.3.7.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/LICENSE.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/__config__.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/__config__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/compat/py3k.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/compat/py3k.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/compat/tests/test_compat.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/compat/tests/test_compat.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/_add_newdocs.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/_add_newdocs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/_asarray.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/_dtype_ctypes.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/_dtype_ctypes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/_dummy.cpython-36m-x86_64-linux-gnu.so" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/_dummy.cpython-36m-x86_64-linux-gnu.so" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/_exceptions.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/_internal.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/_internal.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/_methods.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/_methods.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/_multiarray_tests.cpython-36m-x86_64-linux-gnu.so" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/_multiarray_tests.cpython-36m-x86_64-linux-gnu.so" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/_multiarray_umath.cpython-36m-x86_64-linux-gnu.so" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/_multiarray_umath.cpython-36m-x86_64-linux-gnu.so" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/_operand_flag_tests.cpython-36m-x86_64-linux-gnu.so" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/_operand_flag_tests.cpython-36m-x86_64-linux-gnu.so" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/_rational_tests.cpython-36m-x86_64-linux-gnu.so" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/_rational_tests.cpython-36m-x86_64-linux-gnu.so" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/_struct_ufunc_tests.cpython-36m-x86_64-linux-gnu.so" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/_struct_ufunc_tests.cpython-36m-x86_64-linux-gnu.so" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/_ufunc_config.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/_umath_tests.cpython-36m-x86_64-linux-gnu.so" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/_umath_tests.cpython-36m-x86_64-linux-gnu.so" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/arrayprint.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/arrayprint.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/defchararray.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/defchararray.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/einsumfunc.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/einsumfunc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/fromnumeric.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/fromnumeric.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/function_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/function_base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/getlimits.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/getlimits.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/include/numpy/__multiarray_api.h" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/include/numpy/__multiarray_api.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/include/numpy/multiarray_api.txt" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/include/numpy/multiarray_api.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/include/numpy/ndarrayobject.h" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/include/numpy/ndarrayobject.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/include/numpy/ndarraytypes.h" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/include/numpy/ndarraytypes.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/include/numpy/npy_common.h" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/include/numpy/npy_common.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/include/numpy/npy_math.h" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/include/numpy/npy_math.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/include/numpy/random/bitgen.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/include/numpy/ufuncobject.h" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/include/numpy/ufuncobject.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/lib/libnpymath.a" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/lib/libnpymath.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/machar.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/machar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/memmap.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/memmap.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/multiarray.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/multiarray.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/numeric.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/numeric.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/numerictypes.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/numerictypes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/overrides.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/overrides.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/records.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/records.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/setup_common.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/setup_common.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/shape_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/shape_base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/data/umath-validation-set-README" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/data/umath-validation-set-cos" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/data/umath-validation-set-exp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/data/umath-validation-set-log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/data/umath-validation-set-sin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_datetime.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_datetime.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_deprecations.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_deprecations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_dtype.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_dtype.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_einsum.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_einsum.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_errstate.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_errstate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_half.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_half.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_indexing.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_indexing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_item_selection.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_item_selection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_longdouble.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_longdouble.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_memmap.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_memmap.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_multiarray.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_multiarray.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_nditer.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_nditer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_numeric.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_numeric.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_numerictypes.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_numerictypes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_overrides.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_overrides.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_records.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_records.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_regression.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_regression.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_scalar_methods.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_scalarbuffer.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_scalarbuffer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_scalarprint.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_scalarprint.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_shape_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_shape_base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_ufunc.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_ufunc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_umath.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_umath.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_umath_accuracy.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_umath_complex.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/tests/test_umath_complex.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/umath.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/core/umath.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/ctypeslib.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/ctypeslib.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/__config__.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/__config__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/_shell_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/_shell_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/ccompiler.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/ccompiler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/command/autodist.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/command/autodist.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/command/build_ext.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/command/build_ext.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/command/build_src.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/command/build_src.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/command/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/command/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/command/install.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/command/install.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/command/install_clib.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/command/install_clib.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/conv_template.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/conv_template.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/exec_command.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/exec_command.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/fcompiler/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/fcompiler/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/fcompiler/ibm.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/fcompiler/ibm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/from_template.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/from_template.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/line_endings.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/line_endings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/mingw32ccompiler.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/mingw32ccompiler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/misc_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/misc_util.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/system_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/system_info.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/tests/test_exec_command.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/tests/test_exec_command.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/tests/test_system_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/distutils/tests/test_system_info.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/doc/basics.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/doc/basics.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/doc/byteswapping.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/doc/byteswapping.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/doc/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/doc/constants.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/doc/dispatch.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/doc/glossary.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/doc/glossary.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/doc/indexing.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/doc/indexing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/doc/structured_arrays.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/doc/structured_arrays.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/dual.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/dual.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/f2py/crackfortran.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/f2py/crackfortran.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/f2py/f2py2e.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/f2py/f2py2e.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/f2py/rules.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/f2py/rules.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/f2py/src/fortranobject.c" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/f2py/src/fortranobject.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/f2py/tests/test_block_docstring.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/f2py/tests/test_block_docstring.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/f2py/tests/test_callback.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/f2py/tests/test_callback.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/f2py/tests/test_mixed.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/f2py/tests/test_mixed.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/f2py/tests/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/f2py/tests/util.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/fft/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/fft/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/fft/_pocketfft.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/fft/_pocketfft_internal.cpython-36m-x86_64-linux-gnu.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/fft/helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/fft/helper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/fft/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/fft/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/fft/tests/test_helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/fft/tests/test_helper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/fft/tests/test_pocketfft.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/_datasource.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/_datasource.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/_iotools.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/_iotools.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/_version.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/_version.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/arraypad.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/arraypad.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/arraysetops.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/arraysetops.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/arrayterator.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/arrayterator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/financial.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/financial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/format.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/format.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/function_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/function_base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/histograms.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/histograms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/index_tricks.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/index_tricks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/nanfunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/nanfunctions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/npyio.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/npyio.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/polynomial.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/polynomial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/recfunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/recfunctions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/scimath.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/scimath.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/shape_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/shape_base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/stride_tricks.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/stride_tricks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/tests/test_arraypad.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/tests/test_arraypad.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/tests/test_format.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/tests/test_format.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/tests/test_function_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/tests/test_function_base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/tests/test_histograms.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/tests/test_histograms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/tests/test_index_tricks.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/tests/test_index_tricks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/tests/test_io.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/tests/test_io.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/tests/test_nanfunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/tests/test_nanfunctions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/tests/test_packbits.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/tests/test_packbits.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/tests/test_recfunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/tests/test_recfunctions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/tests/test_stride_tricks.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/tests/test_stride_tricks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/tests/test_twodim_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/tests/test_twodim_base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/tests/test_type_check.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/tests/test_type_check.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/tests/test_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/tests/test_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/twodim_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/twodim_base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/type_check.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/type_check.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/ufunclike.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/ufunclike.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/lib/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/linalg/_umath_linalg.cpython-36m-x86_64-linux-gnu.so" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/linalg/_umath_linalg.cpython-36m-x86_64-linux-gnu.so" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/linalg/lapack_lite.cpython-36m-x86_64-linux-gnu.so" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/linalg/lapack_lite.cpython-36m-x86_64-linux-gnu.so" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/linalg/linalg.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/linalg/linalg.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/linalg/tests/test_linalg.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/linalg/tests/test_linalg.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/ma/core.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/ma/core.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/ma/extras.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/ma/extras.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/ma/mrecords.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/ma/mrecords.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/ma/tests/test_core.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/ma/tests/test_core.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/ma/tests/test_extras.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/ma/tests/test_extras.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/ma/tests/test_mrecords.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/ma/tests/test_mrecords.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/ma/tests/test_old_ma.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/ma/tests/test_old_ma.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/ma/tests/test_regression.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/ma/tests/test_regression.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/ma/tests/test_subclassing.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/ma/tests/test_subclassing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/ma/timer_comparison.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/ma/timer_comparison.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/matlib.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/matlib.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/matrixlib/defmatrix.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/matrixlib/defmatrix.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/matrixlib/tests/test_masked_matrix.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/matrixlib/tests/test_masked_matrix.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/polynomial/_polybase.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/polynomial/_polybase.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/polynomial/chebyshev.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/polynomial/chebyshev.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/polynomial/hermite.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/polynomial/hermite.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/polynomial/hermite_e.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/polynomial/hermite_e.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/polynomial/laguerre.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/polynomial/laguerre.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/polynomial/legendre.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/polynomial/legendre.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/polynomial/polynomial.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/polynomial/polynomial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/polynomial/polyutils.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/polynomial/polyutils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/polynomial/tests/test_chebyshev.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/polynomial/tests/test_chebyshev.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/polynomial/tests/test_classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/polynomial/tests/test_classes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/polynomial/tests/test_hermite.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/polynomial/tests/test_hermite.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/polynomial/tests/test_hermite_e.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/polynomial/tests/test_hermite_e.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/polynomial/tests/test_laguerre.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/polynomial/tests/test_laguerre.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/polynomial/tests/test_legendre.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/polynomial/tests/test_legendre.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/polynomial/tests/test_polynomial.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/polynomial/tests/test_polynomial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/_pickle.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/bit_generator.cpython-36m-x86_64-linux-gnu.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/bit_generator.pxd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/bounded_integers.cpython-36m-x86_64-linux-gnu.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/common.cpython-36m-x86_64-linux-gnu.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/common.pxd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/generator.cpython-36m-x86_64-linux-gnu.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/mt19937.cpython-36m-x86_64-linux-gnu.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/mtrand.cpython-36m-x86_64-linux-gnu.so" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/mtrand.cpython-36m-x86_64-linux-gnu.so" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/pcg64.cpython-36m-x86_64-linux-gnu.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/philox.cpython-36m-x86_64-linux-gnu.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/sfc64.cpython-36m-x86_64-linux-gnu.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/tests/data/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/tests/data/mt19937-testset-1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/tests/data/mt19937-testset-2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/tests/data/pcg64-testset-1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/tests/data/pcg64-testset-2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/tests/data/philox-testset-1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/tests/data/philox-testset-2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/tests/data/sfc64-testset-1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/tests/data/sfc64-testset-2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/tests/test_direct.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/tests/test_generator_mt19937.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/tests/test_generator_mt19937_regressions.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/tests/test_random.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/tests/test_random.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/tests/test_randomstate.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/tests/test_randomstate_regression.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/tests/test_regression.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/tests/test_regression.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/tests/test_seed_sequence.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/random/tests/test_smoke.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/testing/_private/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/testing/_private/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/testing/tests/test_decorators.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/testing/tests/test_decorators.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/testing/tests/test_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/testing/tests/test_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/tests/test_public_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/tests/test_public_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/tests/test_reloading.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/tests/test_reloading.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/tests/test_warnings.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/tests/test_warnings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/version.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/numpy/version.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/justblast/__version__.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/justblast/__version__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/justblast/justblast_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/justblast/justblast_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/justblast/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/justblast/utils.py" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -264,14 +22,21 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="ProjectId" id="1UaGQvtEKUjhcpT78Qi83lPyslz" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../justblast" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Shell Script&#10;Python" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Playground/Taxonomic_Assignment_project/align_ISIS" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -279,20 +44,8 @@
       <recent name="$PROJECT_DIR$/A2G" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager">
-    <configuration name="align2consensus" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.scratch">
+    <configuration name="A2G" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="A2G" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -300,12 +53,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
-      <option name="WORKING_DIRECTORY" value="$USER_HOME$/Playground/Taxonomic_assignment/classdb" />
+      <option name="WORKING_DIRECTORY" value="/tmp/tmpxkaya_7g" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/A2G/align2consensus.py" />
-      <option name="PARAMETERS" value="midori50.consensus Leray_consensus.fst FSIS_realized.reference.fasta" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bin/A2G" />
+      <option name="PARAMETERS" value="$USER_HOME$/Playground/Taxonomic_Assignment_project/midori50.consensus $USER_HOME$/Playground/Taxonomic_Assignment_project/Mlep_consensus.fst tmp --cpus -1 --no_write" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -313,6 +66,60 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="scratch" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="A2G" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/Playground/Taxonomic_Assignment_project/align_ISIS" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/scratch.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="scratch_1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="A2G" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="PATH" value="$PATH:$USER_HOME$/go/bin/seqkit" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/bin/python3.6" />
+      <option name="WORKING_DIRECTORY" value="$APPLICATION_CONFIG_DIR$/scratches" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$APPLICATION_CONFIG_DIR$/scratches/scratch_1.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.A2G" />
+      <item itemvalue="Python.scratch" />
+      <item itemvalue="Python.scratch_1" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.scratch" />
+        <item itemvalue="Python.scratch_1" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -325,6 +132,140 @@
       <option name="presentableId" value="Default" />
       <updated>1575587279213</updated>
     </task>
+    <task id="LOCAL-00001" summary="Including  basic usage in README.md, adding splitting function in A2G_mpi, adding options in A2G.">
+      <created>1582915036123</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1582915036123</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Changing backend and defining minimum requirements">
+      <created>1586451849163</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1586451849163</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Adding version change, including pyfaidx">
+      <created>1586452164832</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1586452164832</updated>
+    </task>
+    <task id="LOCAL-00004" summary="removing cpus_per_node">
+      <created>1586464308054</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1586464308054</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Fixing names in mpi">
+      <created>1586465876184</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1586465876184</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Change the iterable">
+      <created>1586477859890</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1586477859890</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Adding redirection to stderr, and fixing propagation of no_write">
+      <created>1586634969177</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1586634969177</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Fixing mpi splitter">
+      <created>1586969870072</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1586969870072</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Returning tuple of None on run">
+      <created>1587069739133</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1587069739133</updated>
+    </task>
+    <task id="LOCAL-00010" summary="changing check of type of input">
+      <created>1587133591788</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1587133591788</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Changing justblast version">
+      <created>1587138314487</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1587138314487</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Adding output on rank 0 for mpi, managing cpu affinity">
+      <created>1587658444062</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1587658444062</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Adding output on rank 0 for mpi, managing cpu affinity">
+      <created>1588784564316</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1588784564316</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Adding output on rank 0 for mpi, managing cpu affinity">
+      <created>1588788136794</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1588788136794</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Adding output on rank 0 for mpi, managing cpu affinity">
+      <created>1588790645588</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1588790645588</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Adding output on rank 0 for mpi, managing cpu affinity">
+      <created>1588791986370</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1588791986370</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Adding output on rank 0 for mpi, managing cpu affinity">
+      <created>1588801731628</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1588801731628</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Adding output on rank 0 for mpi, managing cpu affinity">
+      <created>1588802804480</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1588802804480</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Adding output on rank 0 for mpi, managing cpu affinity">
+      <created>1588803665401</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1588803665401</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -332,36 +273,165 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="Including  basic usage in README.md, adding splitting function in A2G_mpi, adding options in A2G." />
+    <MESSAGE value="Adding version importing and handling namespace input" />
+    <MESSAGE value="Changing backend and defining minimum requirements" />
+    <MESSAGE value="Adding version change, including pyfaidx" />
+    <MESSAGE value="removing cpus_per_node" />
+    <MESSAGE value="Fixing names in mpi" />
+    <MESSAGE value="Change the iterable" />
+    <MESSAGE value="Adding redirection to stderr, and fixing propagation of no_write" />
+    <MESSAGE value="Fixing mpi splitter" />
+    <MESSAGE value="Returning tuple of None on run" />
+    <MESSAGE value="changing check of type of input" />
+    <MESSAGE value="Changing justblast version" />
+    <MESSAGE value="Adding output on rank 0 for mpi, managing cpu affinity" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding output on rank 0 for mpi, managing cpu affinity" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2099" y="35" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587136630995">
+      <screen x="1920" y="0" width="1366" height="768" />
+    </state>
+    <state x="2099" y="35" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053/1920.0.1366.768@1920.0.1366.768" timestamp="1587136630995" />
+    <state x="2337" y="256" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053/1920.0.1920.1200@1920.0.1920.1200" timestamp="1582913215786" />
+    <state x="2618" y="119" width="642" height="527" key="#scratch.sh" timestamp="1586209914216">
+      <screen x="1920" y="0" width="1366" height="768" />
+    </state>
+    <state x="2618" y="119" width="642" height="527" key="#scratch.sh/67.27.1853.1053/1920.0.1366.768@1920.0.1366.768" timestamp="1586209914216" />
+    <state x="2321" y="0" width="912" height="768" key="CommitChangelistDialog2" timestamp="1588803665254">
+      <screen x="1920" y="0" width="1366" height="768" />
+    </state>
+    <state x="2321" y="0" width="912" height="768" key="CommitChangelistDialog2/67.27.1853.1053/1920.0.1366.768@1920.0.1366.768" timestamp="1588803665254" />
+    <state x="2483" y="142" width="784" height="914" key="CommitChangelistDialog2/67.27.1853.1053/1920.0.1920.1200@1920.0.1920.1200" timestamp="1582915035175" />
+    <state x="2584" y="165" width="309" height="522" key="EnvironmentVariablesDialog" timestamp="1586627474488">
+      <screen x="1920" y="0" width="1366" height="768" />
+    </state>
+    <state x="2584" y="165" width="309" height="522" key="EnvironmentVariablesDialog/67.27.1853.1053/1920.0.1366.768@1920.0.1366.768" timestamp="1586627474488" />
+    <state x="2448" y="228" width="374" height="312" key="FileChooserDialogImpl" timestamp="1587484320964">
+      <screen x="1920" y="0" width="1366" height="768" />
+    </state>
+    <state x="2448" y="228" width="374" height="312" key="FileChooserDialogImpl/67.27.1853.1053/1920.0.1366.768@1920.0.1366.768" timestamp="1587484320964" />
+    <state x="2662" y="356" width="426" height="486" key="FileChooserDialogImpl/67.27.1853.1053/1920.0.1920.1200@1920.0.1920.1200" timestamp="1583262007190" />
+    <state width="1343" height="230" key="GridCell.Tab.0.bottom" timestamp="1587138324127">
+      <screen x="1920" y="0" width="1366" height="768" />
+    </state>
+    <state width="1343" height="230" key="GridCell.Tab.0.bottom/67.27.1853.1053/1920.0.1366.768@1920.0.1366.768" timestamp="1587138324127" />
+    <state width="1895" height="447" key="GridCell.Tab.0.bottom/67.27.1853.1053/1920.0.1920.1200@1920.0.1920.1200" timestamp="1582915067958" />
+    <state width="1343" height="230" key="GridCell.Tab.0.center" timestamp="1587138324127">
+      <screen x="1920" y="0" width="1366" height="768" />
+    </state>
+    <state width="1343" height="230" key="GridCell.Tab.0.center/67.27.1853.1053/1920.0.1366.768@1920.0.1366.768" timestamp="1587138324127" />
+    <state width="1895" height="447" key="GridCell.Tab.0.center/67.27.1853.1053/1920.0.1920.1200@1920.0.1920.1200" timestamp="1582915067958" />
+    <state width="1343" height="230" key="GridCell.Tab.0.left" timestamp="1587138324127">
+      <screen x="1920" y="0" width="1366" height="768" />
+    </state>
+    <state width="1343" height="230" key="GridCell.Tab.0.left/67.27.1853.1053/1920.0.1366.768@1920.0.1366.768" timestamp="1587138324127" />
+    <state width="1895" height="447" key="GridCell.Tab.0.left/67.27.1853.1053/1920.0.1920.1200@1920.0.1920.1200" timestamp="1582915067958" />
+    <state width="1343" height="230" key="GridCell.Tab.0.right" timestamp="1587138324127">
+      <screen x="1920" y="0" width="1366" height="768" />
+    </state>
+    <state width="1343" height="230" key="GridCell.Tab.0.right/67.27.1853.1053/1920.0.1366.768@1920.0.1366.768" timestamp="1587138324127" />
+    <state width="1895" height="447" key="GridCell.Tab.0.right/67.27.1853.1053/1920.0.1920.1200@1920.0.1920.1200" timestamp="1582915067958" />
+    <state width="1343" height="230" key="GridCell.Tab.1.bottom" timestamp="1587138324127">
+      <screen x="1920" y="0" width="1366" height="768" />
+    </state>
+    <state width="1343" height="230" key="GridCell.Tab.1.bottom/67.27.1853.1053/1920.0.1366.768@1920.0.1366.768" timestamp="1587138324127" />
+    <state width="1343" height="230" key="GridCell.Tab.1.center" timestamp="1587138324127">
+      <screen x="1920" y="0" width="1366" height="768" />
+    </state>
+    <state width="1343" height="230" key="GridCell.Tab.1.center/67.27.1853.1053/1920.0.1366.768@1920.0.1366.768" timestamp="1587138324127" />
+    <state width="1343" height="230" key="GridCell.Tab.1.left" timestamp="1587138324127">
+      <screen x="1920" y="0" width="1366" height="768" />
+    </state>
+    <state width="1343" height="230" key="GridCell.Tab.1.left/67.27.1853.1053/1920.0.1366.768@1920.0.1366.768" timestamp="1587138324127" />
+    <state width="1343" height="230" key="GridCell.Tab.1.right" timestamp="1587138324127">
+      <screen x="1920" y="0" width="1366" height="768" />
+    </state>
+    <state width="1343" height="230" key="GridCell.Tab.1.right/67.27.1853.1053/1920.0.1366.768@1920.0.1366.768" timestamp="1587138324127" />
+    <state x="2264" y="38" key="SettingsEditor" timestamp="1587390290102">
+      <screen x="1920" y="0" width="1366" height="768" />
+    </state>
+    <state x="2264" y="38" key="SettingsEditor/67.27.1853.1053/1920.0.1366.768@1920.0.1366.768" timestamp="1587390290102" />
+    <state x="2369" y="234" key="SettingsEditor/67.27.3773.1173@67.27.3773.1173" timestamp="1581351832047" />
+    <state width="498" height="452" key="SwitcherDM" timestamp="1581715269829">
+      <screen x="1920" y="0" width="1920" height="1200" />
+    </state>
+    <state width="498" height="452" key="SwitcherDM/67.27.1853.1053/1920.0.1920.1200@1920.0.1920.1200" timestamp="1581715269829" />
+    <state x="2314" y="214" width="572" height="340" key="Vcs.Push.Dialog.v2" timestamp="1588803667020">
+      <screen x="1920" y="0" width="1366" height="768" />
+    </state>
+    <state x="2314" y="214" width="572" height="340" key="Vcs.Push.Dialog.v2/67.27.1853.1053/1920.0.1366.768@1920.0.1366.768" timestamp="1588803667020" />
+    <state x="2474" y="334" width="802" height="530" key="Vcs.Push.Dialog.v2/67.27.1853.1053/1920.0.1920.1200@1920.0.1920.1200" timestamp="1582915041146" />
+    <state width="683" height="385" key="XDebugger.FullValuePopup" timestamp="1587138229078">
+      <screen x="1920" y="0" width="1366" height="768" />
+    </state>
+    <state width="683" height="385" key="XDebugger.FullValuePopup/67.27.1853.1053/1920.0.1366.768@1920.0.1366.768" timestamp="1587138229078" />
+    <state x="2598" y="271" key="com.intellij.ide.util.TipDialog" timestamp="1586354514667">
+      <screen x="1920" y="0" width="1366" height="768" />
+    </state>
+    <state x="2598" y="271" key="com.intellij.ide.util.TipDialog/67.27.1853.1053/1920.0.1366.768@1920.0.1366.768" timestamp="1586354514667" />
+    <state x="3044" y="423" key="com.intellij.ide.util.TipDialog/67.27.1853.1053/1920.0.1920.1200@1920.0.1920.1200" timestamp="1582919870309" />
+    <state x="2276" y="440" key="com.intellij.ide.util.TipDialog/67.27.3773.1173@67.27.3773.1173" timestamp="1581351674685" />
+    <state x="657" y="198" width="432" height="617" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1587485293861">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="2355" y="125" width="432" height="617" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/67.27.1853.1053/1920.0.1366.768@1920.0.1366.768" timestamp="1586627458145" />
+    <state x="657" y="198" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/67.27.1853.1053/1920.0.1366.768@67.27.1853.1053" timestamp="1587485293861" />
+    <state x="2532" y="195" width="685" height="808" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/67.27.1853.1053/1920.0.1920.1200@1920.0.1920.1200" timestamp="1581718925383" />
+    <state x="2712" y="303" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1586451823056">
+      <screen x="1920" y="0" width="1366" height="768" />
+    </state>
+    <state x="2712" y="303" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/67.27.1853.1053/1920.0.1366.768@1920.0.1366.768" timestamp="1586451823056" />
+    <state x="2266" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1586634446595">
+      <screen x="1920" y="0" width="1366" height="768" />
+    </state>
+    <state x="2266" y="89" width="672" height="678" key="search.everywhere.popup/67.27.1853.1053/1920.0.1366.768@1920.0.1366.768" timestamp="1586634446595" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/justblast/utils.py</url>
-          <line>139</line>
+          <line>146</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/justblast/utils.py</url>
-          <line>133</line>
+          <line>140</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/A2G/SeqIO.py</url>
-          <line>112</line>
+          <line>110</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/A2G/align2consensus.py</url>
-          <line>45</line>
+          <url>file://$APPLICATION_CONFIG_DIR$/scratches/scratch_1.py</url>
+          <line>59</line>
           <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/A2G/align2consensus.py</url>
+          <line>203</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$APPLICATION_CONFIG_DIR$/scratches/scratch.py</url>
+          <line>24</line>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

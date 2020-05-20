@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 E-mail: jshleap@squalus.org
 """
-
+import sys
 import argparse
 from io import BytesIO
 
@@ -155,7 +155,8 @@ class Blast(object):
             blasts = Parallel(n_jobs=self.cpus)(
                 delayed(stdin_run)(args, inp, env=my_env) for inp in tqdm(
                     fasta.yield_seq()))
-            print(fasta.n_duplicates, 'Duplicates in', self.query)
+            print(fasta.n_duplicates, 'Duplicates in', self.query,
+                  file=sys.stderr)
             blasts = [pd.read_table(BytesIO(x), header=None, names=self.columns
                                     )for x in blasts]
             self.blasts = pd.concat(blasts)
