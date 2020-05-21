@@ -17,6 +17,19 @@ alignment of segments that should not align in that region.
 Here is where A2G<sup>2</sup> will use a global to local alignment to 
 avoid such issues, and retained the ungapped alignment of the amplicons.
 
+## Installing
+A2G<sup>2</sup> can be install it through PyPi, by:
+```bash
+pip install A2G
+```
+Alternatively, you can clone this repository, and install it using 
+setuptools:
+```bash
+git clone https://github.com/jshleap/A2G.git
+cd A2G
+python3 setup.py install
+```
+
 ## Basic usage
 A2G<sup>2</sup> will give you help by:
 ```bash
