@@ -1,0 +1,32 @@
+#!python
+from termcolor import colored
+
+from A2G.__version__ import version
+from A2G.align2consensus import *
+
+print('\nA2G version:', colored(version, None, attrs=["bold", "blink"]),
+      file=sys.stderr)
+print(colored('Copyright 2020', 'red', attrs=["bold"]), 'Jose Sergio Hleap\n',
+      file=sys.stderr)
+
+parser = argparse.ArgumentParser()
+parser.add_argument('global_consensus', help='Sequence consensus of the '
+                                             'global region, e.g. full COI')
+parser.add_argument('local_consensus',
+                    help='Sequence consensus of the local region, e.g. '
+                         'Leray fragment')
+parser.add_argument('fasta', help='fasta file with the focal sequences')
+parser.add_argument('--cpus', help='number of cpus to use', default=-1,
+                    type=int)
+parser.add_argument('--no_write', help='return string instead of writing',
+                    action='store_true', default=False)
+parser.add_argument('--out_prefix', action='store', default='A2G_aln',
+                    help='Prefix of outputs')
+parser.add_argument('--remove_duplicates', action='store_false',
+                    help='Keep or remove duplicated sequences',
+                    default=True)
+
+args = parser.parse_args()
+fasta = main(**vars(args))
+if fasta is not None:
+    print(fasta[0], file=sys.stdout)
